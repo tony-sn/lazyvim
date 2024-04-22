@@ -72,3 +72,7 @@ end, { desc = "Replace hex with HSL" })
 keymap.set("n", "<leader>i", function()
   require("thehealthydev.lsp").toggleInlayHints()
 end, { desc = "Toggle inlay hints" })
+
+keymap.set("n", "<leader>ug", function()
+  require("gitsigns").toggle_current_line_blame()
+end, { desc = "Toggle Git Blame" })

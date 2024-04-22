@@ -15,6 +15,7 @@ return {
           opts = { skip = true },
         })
       end
+
       local focused = true
       vim.api.nvim_create_autocmd("FocusGained", {
         callback = function()
@@ -55,10 +56,9 @@ return {
       })
 
       opts.presets.lsp_doc_border = true
+
       vim.diagnostic.config({
-        float = {
-          border = "rounded",
-        },
+        float = { border = "rounded" },
       })
     end,
   },

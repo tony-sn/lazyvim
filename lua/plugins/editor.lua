@@ -258,9 +258,6 @@ return {
         NOTE = { icon = "󰍨 ", color = "hint", alt = { "INFO" } },
       },
     },
-    -- event = "LazyFile",
-    -- cmd = { "TodoQuickFix" },
-    -- keys = {},
   },
   {
     "kylechui/nvim-surround",

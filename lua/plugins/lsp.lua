@@ -233,6 +233,22 @@ return {
             },
           },
         },
+        ---@type lspconfig.options.eslint
+        eslint = {
+          settings = {},
+          keys = {
+            {
+              "<leader>cx",
+              function(client, bufnr)
+                vim.api.nvim_create_autocmd("BufWritePre", {
+                  buffer = bufnr,
+                  command = "EslintFixAll",
+                })
+              end,
+              desc = "Auto Fix",
+            },
+          },
+        },
       },
       setup = {},
     },

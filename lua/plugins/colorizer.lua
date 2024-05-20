@@ -5,7 +5,7 @@ return {
     "NvChad/nvim-colorizer.lua",
     config = function()
       require("colorizer").setup({
-        filetypes = { "*" },
+        filetypes = { "css", "scss", "html", "javascript", "typescript", "typescriptreact", "javascriptreact" },
         user_default_options = {
           RGB = true, -- #RGB hex codes
           RRGGBB = true, -- #RRGGBB hex codes

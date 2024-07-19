@@ -2,6 +2,8 @@ local common_skip_filters = {
   { event = "notify", find = "No information available" },
   { event = "notify", find = "Unable to find ESLint library" },
   { event = "notify", find = "Invalid mapping for Y" },
+  { event = "notify", find = "_typescript.didOrganizeImports" },
+  { event = "notify", find = "There were issues reported" },
 }
 
 return {
@@ -142,6 +144,17 @@ return {
       },
     },
     keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
+  },
+
+  {
+    "folke/styler.nvim",
+    config = function()
+      require("styler").setup({
+        themes = {
+          default = { colorscheme = "solarized-osaka" },
+        },
+      })
+    end,
   },
 
   {

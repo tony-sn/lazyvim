@@ -1,0 +1,42 @@
+{
+  "API controller methods": {
+    "prefix": "apic",
+    "body": [
+      "static async $1methodName(req, res, next) {",
+      "try {",
+      "$2",
+      "}",
+      "catch (e){",
+
+      "}",
+      "}"
+    ],
+    "description": "Shortcut for static api methods"
+  },
+  "Input Process Output (IPO) Model ": {
+    "prefix": "ipo",
+    "body": [
+      "/*",
+      "PSEUDO:",
+      "",
+      "INPUT: $1",
+      "",
+      "PROCESS:",
+      "${3:- Step 1: }",
+      "${4:- Step 2: }",
+      "${0:- Step 3: }",
+      "",
+      "OUTPUT: $2",
+      "*/"
+    ],
+    "description": "Shortcut for pseudocode comments"
+  },
+  "Print styled log to console": {
+    "prefix": "slog",
+    "body": [
+      "console.log('%c $2 Log: ', 'color: $3; font-weight: 600', $1);",
+      "$0"
+    ],
+    "description": "Log styled output to console"
+  }
+}

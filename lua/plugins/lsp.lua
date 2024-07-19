@@ -18,8 +18,16 @@ return {
         "typescript-language-server",
         "css-lsp",
         "omnisharp",
+        "prettier",
       })
     end,
+  },
+
+  {
+    "nvimtools/none-ls.nvim",
+    dependencies = {
+      "nvimtools/none-ls-extras.nvim",
+    },
   },
 
   -- lsp servers
@@ -65,71 +73,123 @@ return {
         tsserver = {
           keys = {
             {
-              "<leader>co",
+              "gD",
               function()
-                vim.lsp.buf.code_action({
-                  apply = true,
-                  context = {
-                    only = { "source.organizeImports.ts" },
-                    diagnostics = {},
-                  },
+                local params = vim.lsp.util.make_position_params()
+                LazyVim.lsp.execute({
+                  command = "typescript.goToSourceDefinition",
+                  arguments = { params.textDocument.uri, params.position },
+                  open = true,
                 })
               end,
+              desc = "Goto Source Definition",
+            },
+            {
+              "gR",
+              function()
+                LazyVim.lsp.execute({
+                  command = "typescript.findAllFileReferences",
+                  arguments = { vim.uri_from_bufnr(0) },
+                  open = true,
+                })
+              end,
+              desc = "File References",
+            },
+            {
+              "<leader>co",
+              LazyVim.lsp.action["source.organizeImports"],
               desc = "Organize Imports",
             },
             {
-              "<leader>cR",
-              function()
-                vim.lsp.buf.code_action({
-                  apply = true,
-                  context = {
-                    only = { "source.removeUnusedImports.ts" },
-                    diagnostics = {},
-                  },
-                })
-              end,
-              desc = "Remove Unused Imports",
+              "<leader>cM",
+              LazyVim.lsp.action["source.addMissingImports.ts"],
+              desc = "Add missing imports",
             },
             {
               "<leader>cu",
-              function()
-                vim.lsp.buf.code_action({
-                  apply = true,
-                  context = {
-                    only = { "source.removeUnused.ts" },
-                    diagnostics = {},
-                  },
-                })
-              end,
-              desc = "Remove Unused Variables",
+              LazyVim.lsp.action["source.removeUnused.ts"],
+              desc = "Remove unused imports",
             },
             {
-              "<leader>cI",
-              function()
-                vim.lsp.buf.code_action({
-                  apply = true,
-                  context = {
-                    only = { "source.addMissingImports.ts" },
-                    diagnostics = {},
-                  },
-                })
-              end,
-              desc = "Add Missing Imports",
+              "<leader>cD",
+              LazyVim.lsp.action["source.fixAll.ts"],
+              desc = "Fix all diagnostics",
             },
             {
-              "<leader>cq",
+              "<leader>cV",
               function()
-                vim.lsp.buf.code_action({
-                  apply = true,
-                  context = {
-                    only = { "source.fixAll.ts" },
-                    diagnostics = {},
-                  },
-                })
+                LazyVim.lsp.execute({ command = "typescript.selectTypeScriptVersion" })
               end,
-              desc = "Quick fix",
+              desc = "Select TS workspace version",
             },
           },
+          -- keys = {
+          --   {
+          --     "<leader>co",
+          --     function()
+          --       vim.lsp.buf.code_action({
+          --         apply = true,
+          --         context = {
+          --           only = { "source.organizeImports.ts" },
+          --           diagnostics = {},
+          --         },
+          --       })
+          --     end,
+          --     desc = "Organize Imports",
+          --   },
+          --   {
+          --     "<leader>cR",
+          --     function()
+          --       vim.lsp.buf.code_action({
+          --         apply = true,
+          --         context = {
+          --           only = { "source.removeUnusedImports.ts" },
+          --           diagnostics = {},
+          --         },
+          --       })
+          --     end,
+          --     desc = "Remove Unused Imports",
+          --   },
+          --   {
+          --     "<leader>cu",
+          --     function()
+          --       vim.lsp.buf.code_action({
+          --         apply = true,
+          --         context = {
+          --           only = { "source.removeUnused.ts" },
+          --           diagnostics = {},
+          --         },
+          --       })
+          --     end,
+          --     desc = "Remove Unused Variables",
+          --   },
+          --   {
+          --     "<leader>cI",
+          --     function()
+          --       vim.lsp.buf.code_action({
+          --         apply = true,
+          --         context = {
+          --           only = { "source.addMissingImports.ts" },
+          --           diagnostics = {},
+          --         },
+          --       })
+          --     end,
+          --     desc = "Add Missing Imports",
+          --   },
+          --   {
+          --     "<leader>cq",
+          --     function()
+          --       vim.lsp.buf.code_action({
+          --         apply = true,
+          --         context = {
+          --           only = { "source.fixAll.ts" },
+          --           diagnostics = {},
+          --         },
+          --       })
+          --     end,
+          --     desc = "Quick fix",
+          --   },
+          -- },
           root_dir = get_root_dir,
           -- root_dir = function(...)
           --   return require("lspconfig.util").root_pattern(".git")(...)

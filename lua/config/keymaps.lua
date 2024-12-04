@@ -74,6 +74,6 @@ keymap.set("n", "<leader>i", function()
   require("thehealthydev.lsp").toggleInlayHints()
 end, { desc = "Toggle inlay hints" })
 
-keymap.set("n", "<leader>ug", function()
+keymap.set("n", "<leader>gm", function()
   require("gitsigns").toggle_current_line_blame()
 end, { desc = "Toggle Git Blame" })

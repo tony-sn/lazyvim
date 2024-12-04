@@ -7,7 +7,7 @@
       "$2",
       "}",
       "catch (e){",
-
+      "$3",
       "}",
       "}"
     ],
@@ -38,5 +38,78 @@
       "$0"
     ],
     "description": "Log styled output to console"
+  },
+  "Trace console log": {
+    "prefix": "logt",
+    "body": [
+      "console.trace('%c $2 Log: ', 'color: $3; font-weight: 600', $1);"
+    ],
+    "description": "trace console log"
+  },
+  "Add JSDoc for Constant Type": {
+    "prefix": "jsdoc-const",
+    "body": ["/** @type {const} $1 */", "const ${2:CONSTANT_NAME} = $3;"],
+    "description": "Add JSDoc with constant type annotation"
+  },
+  "React Context Reducer Pattern": {
+    "prefix": "react-context",
+    "body": [
+      "// #step 1: create the context",
+      "import { createContext, useReducer } from 'react';",
+      "",
+      "export const ${1:MyContext} = createContext(null);",
+      "",
+      "// #step 2: Put state and dispatch into context",
+      "const initState = {",
+      "  key1: '${2:value1}',",
+      "  key2: '${3:value2}',",
+      "};",
+      "",
+      "const ACTIONS = {",
+      "  ACTION_TYPE1: 'ACTION_TYPE1',",
+      "  ACTION_TYPE2: 'ACTION_TYPE2',",
+      "};",
+      "",
+      "const reducerFn = (state, action) => {",
+      "  switch (action.type) {",
+      "    case ACTIONS.ACTION_TYPE1:",
+      "      return {",
+      "        ...state,",
+      "        key1: action.payload,",
+      "      };",
+      "",
+      "    case ACTIONS.ACTION_TYPE2:",
+      "      return {",
+      "        ...state,",
+      "        key2: action.payload,",
+      "      };",
+      "    default:",
+      "      return state;",
+      "  }",
+      "};",
+      "",
+      "export const ${4:MyProvider} = (props) => {",
+      "  const [state, dispatch] = useReducer(reducerFn, initState);",
+      "",
+      "  return (",
+      "    <${1:MyContext}.Provider value={[state, dispatch]}>",
+      "      {props.children}",
+      "    </${1:MyContext}.Provider>",
+      "  );",
+      "};",
+      "",
+      "// #step 3: use the context in the component",
+      "import { useContext, useDebugValue } from 'react';",
+      "",
+      "export const use${5:MyContext} = () => {",
+      "  const context = useContext(${1:MyContext});",
+      "  useDebugValue(context, `is context wrapped: ${!!context}`);",
+      "  if (context === undefined) {",
+      "    throw new Error(`use${5:MyContext} must be used within a ${4:MyProvider}`);",
+      "  }",
+      "  return context;",
+      "};"
+    ],
+    "description": "React Context API with Reducer Boilerplate"
   }
 }

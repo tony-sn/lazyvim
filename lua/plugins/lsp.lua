@@ -11,11 +11,8 @@ return {
       vim.list_extend(opts.ensure_installed, {
         "stylua",
         "selene",
-        -- "luacheck",
         "shellcheck",
         "shfmt",
-        "tailwindcss-language-server",
-        "typescript-language-server",
         "css-lsp",
         "omnisharp",
         "prettier",
@@ -33,18 +30,6 @@ return {
   -- lsp servers
   {
     "neovim/nvim-lspconfig",
-    init = function()
-      local keys = require("lazyvim.plugins.lsp.keymaps").get()
-      keys[#keys + 1] = {
-        "gd",
-        function()
-          -- DO NOT RESUSE WINDOW
-          require("telescope.builtin").lsp_definitions({ reuse_win = false })
-        end,
-        desc = "Goto Definition",
-        has = "definition",
-      }
-    end,
     opts = {
       inlay_hints = { enabled = false },
       ---@type lspconfig.options
@@ -63,14 +48,8 @@ return {
             },
           },
         },
-        tailwindcss = {
-          root_dir = get_root_dir,
-          -- root_dir = function(...)
-          --   return require("lspconfig.util").root_pattern(".git")(...)
-          -- end,
-        },
-        ---@type lspconfig.options.tsserver
-        tsserver = {
+        ---@type lspconfig.options.ts_ls
+        ts_ls = {
           keys = {
             {
               "gD",
@@ -312,5 +291,22 @@ return {
       },
       setup = {},
     },
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = function()
+      local keys = require("lazyvim.plugins.lsp.keymaps").get()
+      vim.list_extend(keys, {
+        {
+          "gd",
+          function()
+            -- DO NOT RESUSE WINDOW
+            require("telescope.builtin").lsp_definitions({ reuse_win = false })
+          end,
+          desc = "Goto Definition",
+          has = "definition",
+        },
+      })
+    end,
   },
 }

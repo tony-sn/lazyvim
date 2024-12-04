@@ -16,3 +16,13 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt.conceallevel = 0
   end,
 })
+
+-- local augroup = vim.api.nvim_create_augroup
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--   group = augroup("organise_imports", { clear = true }),
+--   pattern = { "*.ts", "typescript", "javascript", "javascriptreact", "typescriptreact" },
+--   callback = function()
+--     vim.lsp.buf.code_action({ apply = true, context = { only = { "source.addMissingImports.ts" }, diagnostics = {} } })
+--     vim.lsp.buf.code_action({ apply = true, context = { only = { "source.removeUnused.ts" }, diagnostics = {} } })
+--   end,
+-- })

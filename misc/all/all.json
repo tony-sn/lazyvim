@@ -1,1 +1,21 @@
-{}
+{
+  "Lorem 9": {
+    "prefix": "lorem10",
+    "body": ["Lorem ipsum dolor sit amet."],
+    "description": "Inserts a short loreum ipsum text with 10 characters"
+  },
+  "Lorem 100": {
+    "prefix": "lorem100",
+    "body": [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    ],
+    "description": "Inserts lorem ipsum text with around 100 characters"
+  },
+  "Lorem Custom": {
+    "prefix": "lorem",
+    "body": [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. $1"
+    ],
+    "description": "Inserts a customisable lorem ipsum text"
+  }
+}

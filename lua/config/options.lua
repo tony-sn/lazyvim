@@ -3,6 +3,9 @@
 -- Add any additional options here
 vim.g.mapleader = " "
 vim.g.lazyvim_prettier_needs_config = false
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
 
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
@@ -49,4 +52,18 @@ vim.cmd([[au BufNewFile,BufRead Podfile setf ruby]])
 
 if vim.fn.has("nvim-0.8") == 1 then
   vim.opt.cmdheight = 0
+end
+
+-- Helper function for transparency formatting
+local alpha = function()
+  return string.format("%x", math.floor(255 * vim.g.transparency or 0.8))
+end
+
+if vim.g.neovide then
+  -- vim.print(vim.g.neovide_version)
+  -- g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
+  -- vim.g.neovide_transparency = 0.0
+  -- vim.g.transparency = 0.8
+  -- vim.g.neovide_background_color = "#0f1117" .. alpha()
+  vim.g.neovide_hide_mouse_when_typing = true
 end

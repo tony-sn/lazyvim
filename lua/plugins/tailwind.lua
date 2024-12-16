@@ -29,14 +29,14 @@
 local cmp = require("cmp")
 
 return {
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        tailwindcss = {},
-      },
-    },
-  },
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --   opts = {
+  --     servers = {
+  --       tailwindcss = {},
+  --     },
+  --   },
+  -- },
   {
     "NvChad/nvim-colorizer.lua",
     opts = {

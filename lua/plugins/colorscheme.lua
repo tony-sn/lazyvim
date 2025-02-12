@@ -9,10 +9,10 @@ return {
       }
     end,
   },
-  {
-    "catppuccin/nvim",
-    lazy = false,
-    name = "catppuccin",
-    opts = {},
-  },
+  -- {
+  --   "catppuccin/nvim",
+  --   lazy = false,
+  --   name = "catppuccin",
+  --   opts = {},
+  -- },
 }

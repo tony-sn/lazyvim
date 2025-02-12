@@ -79,7 +79,7 @@ return {
   },
 
   {
-    "telescope.nvim",
+    "nvim-telescope.nvim/telescope.nvim",
     dependencies = {
       {
         "nvim-telescope/telescope-fzf-native.nvim",

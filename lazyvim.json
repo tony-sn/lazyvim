@@ -1,12 +1,14 @@
 {
   "extras": [
+    "lazyvim.plugins.extras.coding.nvim-cmp",
     "lazyvim.plugins.extras.lang.markdown",
     "lazyvim.plugins.extras.lang.omnisharp",
     "lazyvim.plugins.extras.lang.toml"
   ],
+  "install_version": 7,
   "news": {
-    "NEWS.md": "7429",
+    "NEWS.md": "10960",
     "doc/news.txt": "24450"
   },
-  "version": 7
+  "version": 8
 }

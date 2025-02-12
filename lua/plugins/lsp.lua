@@ -30,6 +30,7 @@ return {
   -- lsp servers
   {
     "neovim/nvim-lspconfig",
+    version = "*",
     opts = {
       inlay_hints = { enabled = false },
       ---@type lspconfig.options
@@ -294,6 +295,7 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
+    version = "*",
     opts = function()
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
       vim.list_extend(keys, {

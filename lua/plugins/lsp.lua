@@ -103,77 +103,7 @@ return {
               desc = "Select TS workspace version",
             },
           },
-          -- keys = {
-          --   {
-          --     "<leader>co",
-          --     function()
-          --       vim.lsp.buf.code_action({
-          --         apply = true,
-          --         context = {
-          --           only = { "source.organizeImports.ts" },
-          --           diagnostics = {},
-          --         },
-          --       })
-          --     end,
-          --     desc = "Organize Imports",
-          --   },
-          --   {
-          --     "<leader>cR",
-          --     function()
-          --       vim.lsp.buf.code_action({
-          --         apply = true,
-          --         context = {
-          --           only = { "source.removeUnusedImports.ts" },
-          --           diagnostics = {},
-          --         },
-          --       })
-          --     end,
-          --     desc = "Remove Unused Imports",
-          --   },
-          --   {
-          --     "<leader>cu",
-          --     function()
-          --       vim.lsp.buf.code_action({
-          --         apply = true,
-          --         context = {
-          --           only = { "source.removeUnused.ts" },
-          --           diagnostics = {},
-          --         },
-          --       })
-          --     end,
-          --     desc = "Remove Unused Variables",
-          --   },
-          --   {
-          --     "<leader>cI",
-          --     function()
-          --       vim.lsp.buf.code_action({
-          --         apply = true,
-          --         context = {
-          --           only = { "source.addMissingImports.ts" },
-          --           diagnostics = {},
-          --         },
-          --       })
-          --     end,
-          --     desc = "Add Missing Imports",
-          --   },
-          --   {
-          --     "<leader>cq",
-          --     function()
-          --       vim.lsp.buf.code_action({
-          --         apply = true,
-          --         context = {
-          --           only = { "source.fixAll.ts" },
-          --           diagnostics = {},
-          --         },
-          --       })
-          --     end,
-          --     desc = "Quick fix",
-          --   },
-          -- },
           root_dir = get_root_dir,
-          -- root_dir = function(...)
-          --   return require("lspconfig.util").root_pattern(".git")(...)
-          -- end,
           single_file_support = false,
           settings = {
             typescript = {
@@ -196,6 +126,18 @@ return {
                 includeInlayPropertyDeclarationTypeHints = true,
                 includeInlayFunctionLikeReturnTypeHints = true,
                 includeInlayEnumMemberValueHints = true,
+              },
+            },
+          },
+        },
+        -- new for vtsls 20/05/25
+        vtsls = {
+          settings = {
+            typescript = {
+              preferences = {
+                includeCompletionsForModuleExports = true,
+                includeCompletionsForImportStatements = true,
+                importModuleSpecifier = "non-relative",
               },
             },
           },

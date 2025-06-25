@@ -4,6 +4,7 @@ local common_skip_filters = {
   { event = "notify", find = "Invalid mapping for Y" },
   { event = "notify", find = "_typescript.didOrganizeImports" },
   { event = "notify", find = "There were issues reported" },
+  { event = "notify", find = "'modifiable' is off" },
 }
 
 return {

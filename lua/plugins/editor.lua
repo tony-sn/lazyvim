@@ -37,33 +37,6 @@ return {
       },
     },
   },
-  {
-    "catppuccin/nvim",
-    optional = true,
-    ---@type CatppuccinOptions
-    opts = { integrations = { mini = true } },
-  },
-  {
-    "echasnovski/mini.hipatterns",
-    event = "BufReadPre",
-    opts = {
-      highlighters = {
-        hsl_color = {
-          pattern = "hsl%(%d+,? %d+%%?,? %d+%%?%)",
-          group = function(_, match)
-            local utils = require("solarized-osaka.hsl")
-            --- @type string, string, string
-            local nh, ns, nl = match:match("hsl%((%d+),? (%d+)%%?,? (%d+)%%?%)")
-            --- @type number?, number?, number?
-            local h, s, l = tonumber(nh), tonumber(ns), tonumber(nl)
-            --- @type string
-            local hex_color = utils.hslToHex(h, s, l)
-            return MiniHipatterns.compute_hex_color_group(hex_color, "bg")
-          end,
-        },
-      },
-    },
-  },
 
   {
     "dinhhuy258/git.nvim",
@@ -79,7 +52,7 @@ return {
   },
 
   {
-    "nvim-telescope.nvim/telescope.nvim",
+    "nvim-telescope/telescope.nvim",
     dependencies = {
       {
         "nvim-telescope/telescope-fzf-native.nvim",
@@ -157,6 +130,14 @@ return {
           builtin.treesitter()
         end,
         desc = "Lists Function names, variables, from Treesitter",
+      },
+      {
+        ";c",
+        function()
+          local builtin = require("telescope.builtin")
+          builtin.lsp_incoming_calls()
+        end,
+        desc = "Lists LSP incoming calls for word under the cursor",
       },
       {
         "sf",
@@ -239,6 +220,46 @@ return {
       require("telescope").load_extension("fzf")
       require("telescope").load_extension("file_browser")
     end,
+  },
+  -- add close-buffers
+  {
+    "kazhala/close-buffers.nvim",
+    event = "VeryLazy",
+    keys = {
+      {
+        "<leader>th",
+        function()
+          require("close_buffers").delete({ type = "hidden" })
+        end,
+        "Close Hidden Buffers",
+      },
+      {
+        "<leader>tu",
+        function()
+          require("close_buffers").delete({ type = "nameless" })
+        end,
+        "Close Nameless Buffers",
+      },
+    },
+  },
+  -- add blink.cmp
+  {
+    "saghen/blink.cmp",
+    opts = {
+      completion = {
+        menu = {
+          winblend = vim.o.pumblend,
+        },
+        documentation = {
+          winblend = vim.o.pumblend,
+        },
+      },
+      signature = {
+        window = {
+          winblend = vim.o.pumblend,
+        },
+      },
+    },
   },
   {
     "mbbill/undotree",

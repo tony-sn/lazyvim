@@ -137,7 +137,23 @@ return {
           local builtin = require("telescope.builtin")
           builtin.lsp_incoming_calls()
         end,
-        desc = "Lists LSP incoming calls for word under the cursor",
+        desc = "Lists LSP incoming [c]alls for word under the cursor",
+      },
+      {
+        ";i",
+        function()
+          local builtin = require("telescope.builtin")
+          builtin.lsp_implementations()
+        end,
+        desc = "Go to implementation of the word under the cursor",
+      },
+      {
+        ";t",
+        function()
+          local builtin = require("telescope.builtin")
+          builtin.lsp_type_definitions()
+        end,
+        desc = "Go to definition of the type of the word under the cursor",
       },
       {
         "sf",
@@ -221,6 +237,47 @@ return {
       require("telescope").load_extension("file_browser")
     end,
   },
+
+  {
+    "jmacadie/telescope-hierarchy.nvim",
+    dependencies = {
+      {
+        "nvim-telescope/telescope.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+      },
+    },
+    keys = {
+      {
+        "<leader>si",
+        "<cmd>Telescope hierarchy incoming_calls<cr>",
+        desc = "LSP: [S]earch [I]ncoming Calls",
+      },
+      {
+        ";o",
+        "<cmd>Telescope hierarchy outgoing_calls<cr>",
+        desc = "List LSP [o]utgoing calls for word under the cursor",
+      },
+    },
+    opts = {
+      -- don't use `defaults = { }` here, do this in the main telescope spec
+      extensions = {
+        hierarchy = {
+          -- telescope-hierarchy.nvim config, see below
+          initial_multi_expand = false, -- Run a multi-expand on open? If false, will only expand one layer deep by default
+          multi_depth = 5, -- How many layers deep should a multi-expand go?
+          layout_strategy = "horizontal",
+        },
+        -- no other extensions here, they can have their own spec too
+      },
+    },
+    config = function(_, opts)
+      -- Calling telescope's setup from multiple specs does not hurt, it will happily merge the
+      -- configs for us. We won't use data, as everything is in it's own namespace (telescope
+      -- defaults, as well as each extension).
+      require("telescope").setup(opts)
+      require("telescope").load_extension("hierarchy")
+    end,
+  },
   -- add close-buffers
   {
     "kazhala/close-buffers.nvim",
@@ -297,6 +354,8 @@ return {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
     cmd = "Neotree",
+    ---@module "neo-tree"
+    ---@type neotree.Config?
     opts = {
       window = {
         mappings = {

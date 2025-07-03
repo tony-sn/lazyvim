@@ -25,6 +25,9 @@ return {
       keys = vim.g.have_nerd_font and {} or {
         r = "󰓡 ",
       },
+      rules = {
+        { plugin = "telescope-hierarchy.nvim", icon = "", color = "blue" },
+      },
     },
   },
 }

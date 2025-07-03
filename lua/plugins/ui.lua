@@ -5,6 +5,9 @@ local common_skip_filters = {
   { event = "notify", find = "_typescript.didOrganizeImports" },
   { event = "notify", find = "There were issues reported" },
   { event = "notify", find = "'modifiable' is off" },
+  { event = "msg_show", find = "E21.*modifiable" },
+  { event = "msg_show", find = "Error handling LSP Incoming Calls" },
+  { event = "msg_show", find = "Error handling LSP Outgoing Calls" },
 }
 
 return {
@@ -71,6 +74,14 @@ return {
     opts = {
       timeout = 5000,
     },
+  },
+
+  {
+    "snacks.nvim",
+    opts = {
+      scroll = { enabled = false },
+    },
+    keys = {},
   },
 
   -- animations

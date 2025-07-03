@@ -16,6 +16,8 @@ return {
         "css-lsp",
         "omnisharp",
         "prettier",
+        "tailwindcss-language-server",
+        "typescript-language-server",
       })
     end,
   },

@@ -17,7 +17,6 @@ return {
         "omnisharp",
         "prettier",
         "tailwindcss-language-server",
-        "typescript-language-server",
       })
     end,
   },
@@ -27,6 +26,12 @@ return {
     dependencies = {
       "nvimtools/none-ls-extras.nvim",
     },
+    optional = true,
+    opts = function(_, opts)
+      local nls = require("null-ls")
+      opts.sources = opts.sources or {}
+      table.insert(opts.sources, nls.builtins.formatting.prettier)
+    end,
   },
 
   -- lsp servers
@@ -53,6 +58,7 @@ return {
         },
         ---@type lspconfig.options.ts_ls
         ts_ls = {
+          enable = false,
           keys = {
             {
               "gD",
@@ -134,6 +140,7 @@ return {
         },
         -- new for vtsls 20/05/25
         vtsls = {
+          enable = false,
           settings = {
             typescript = {
               preferences = {
@@ -219,17 +226,16 @@ return {
         },
         ---@type lspconfig.options.eslint
         eslint = {
+          enable = true,
+          format = { enable = true },
+          packageManager = "npm",
+          autoFixOnSave = true,
           settings = {},
           keys = {
             {
               "<leader>cx",
-              function(client, bufnr)
-                vim.api.nvim_create_autocmd("BufWritePre", {
-                  buffer = bufnr,
-                  command = "EslintFixAll",
-                })
-              end,
-              desc = "Auto Fix",
+              "<cmd>EslintFixAll<cr>",
+              desc = "Auto Fix Eslint",
             },
           },
         },

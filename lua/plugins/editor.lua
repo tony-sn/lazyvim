@@ -140,12 +140,12 @@ return {
         desc = "Lists LSP incoming [c]alls for word under the cursor",
       },
       {
-        ";i",
+        ";a",
         function()
           local builtin = require("telescope.builtin")
           builtin.lsp_implementations()
         end,
-        desc = "Go to implementation of the word under the cursor",
+        desc = "Go to implementation/[a]pplication of the word under the cursor",
       },
       {
         ";t",
@@ -248,9 +248,9 @@ return {
     },
     keys = {
       {
-        "<leader>si",
+        ";i",
         "<cmd>Telescope hierarchy incoming_calls<cr>",
-        desc = "LSP: [S]earch [I]ncoming Calls",
+        desc = "List LSP [i]ncoming calls for word under the cursor",
       },
       {
         ";o",

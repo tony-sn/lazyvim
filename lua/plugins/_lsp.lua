@@ -1,3 +1,8 @@
+-- TODO: remove this file
+if true then
+  return {}
+end
+
 local get_root_dir = function(fname)
   local util = require("lspconfig.util")
   return util.root_pattern(".git")(fname) or util.root_pattern("package.json", "tsconfig.json")(fname)
@@ -140,7 +145,7 @@ return {
         -- new for vtsls 20/05/25
         ---@type lspconfig.configs.vtsls
         vtsls = {
-          enable = true,
+          enable = false,
           settings = {
             typescript = {
               preferences = {
@@ -153,7 +158,7 @@ return {
             experimental = {
               maxInlayHintLength = 30,
               completion = {
-                enableServerSideFuzzyMatch = true,
+                enableServerSdieFuzzyMatch = true,
                 entriesLimit = 200,
               },
             },

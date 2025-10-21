@@ -1,21 +1,21 @@
-local avante_complete_code = "Complete the following codes written in " .. vim.bo.filetype
-
-require("which-key").add({
-  {
-    "<leader>a",
-    group = "Avante",
-  },
-  {
-    mode = { "n", "v" },
-  },
-  {
-    "<leader>ac",
-    function()
-      require("avante.api").ask({ question = avante_complete_code })
-    end,
-    desc = "Complete Code(ask)",
-  },
-})
+-- local avante_complete_code = "Complete the following codes written in " .. vim.bo.filetype
+--
+-- require("which-key").add({
+--   {
+--     "<leader>a",
+--     group = "Avante",
+--   },
+--   {
+--     mode = { "n", "v" },
+--   },
+--   {
+--     "<leader>ac",
+--     function()
+--       require("avante.api").ask({ question = avante_complete_code })
+--     end,
+--     desc = "Complete Code(ask)",
+--   },
+-- })
 
 return {
   "folke/which-key.nvim",

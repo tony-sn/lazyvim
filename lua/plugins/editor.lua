@@ -56,6 +56,7 @@ return {
     dependencies = {
       {
         "nvim-telescope/telescope-fzf-native.nvim",
+        "nvim-telescope/telescope-live-grep-args.nvim",
         build = "make",
       },
       "nvim-telescope/telescope-file-browser.nvim",
@@ -90,6 +91,14 @@ return {
           })
         end,
         desc = "Search for a string in your current working directory and get results live as you type, respects .gitignore",
+      },
+      { --- NEW
+        ";g",
+        function()
+          local telescope = require("telescope")
+          telescope.extensions.live_grep_args.live_grep_args()
+        end,
+        desc = "Live grep agrs picker for telescope",
       },
       {
         "\\\\",
@@ -235,6 +244,7 @@ return {
       telescope.setup(opts)
       require("telescope").load_extension("fzf")
       require("telescope").load_extension("file_browser")
+      require("telescope").load_extension("live_grep_args")
     end,
   },
 
